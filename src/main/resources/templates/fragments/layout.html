@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/img/favicon.ico}" href="favicon.ico">
+    <title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">UTBK Admin</title>
+
+    <link rel="stylesheet" th:href="@{/assets/vendor/bootstrap/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/assets/vendor/font-awesome/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+
+    <!--    <script type="text/javascript" src="http://cdn.jsdelivr.net/thymol/latest/thymol.min.js"></script>-->
+
+    <div layout:fragment="assets" th:remove="tag"></div>
+</head>
+
+<body>
+<div id="wrapper">
+
+    <nav th:replace="fragments/sidebar :: sidebar"></nav>
+
+
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/header :: header"></div>
+
+        <div layout:fragment="content" th:remove="tag"></div>
+
+        <!-- Page footer-->
+        <div class="footer">
+            <div class="float-right">
+                © <strong><span th:text="${#dates.year(new java.util.Date())}">2020</span></strong>.
+            </div>
+            <div>
+                <strong>Copyright</strong> Pustipanda UIN Jakarta
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/assets/vendor/jquery/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/assets/js/popper.min.js}"></script>
+<script th:src="@{/assets/vendor/bootstrap/bootstrap.js}"></script>
+
+<script th:src="@{/assets/vendor/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/assets/vendor/slimscroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/assets/vendor/pace/pace.min.js}"></script>
+<script th:src="@{/assets/js/inspinia.js}"></script>
+
+<div layout:fragment="scripts" th:remove="tag"></div>
+
+</body>
+</html>

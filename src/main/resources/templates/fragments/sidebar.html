@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar-default navbar-static-side" role="navigation" th:fragment="sidebar">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="logo-element">
+                    UTBK
+                </div>
+            </li>
+            <li th:each="m : ${menuList}" th:class="${#strings.equals(m.id, menuAktif) ? 'active' : null}">
+                <a th:href="@{${#strings.isEmpty(m.url) ? '#m' + m.id : m.url}}">
+                    <i th:if="${!#strings.isEmpty(m.icon)}" th:class="${m.icon}" class="fa fa-files-o"></i>
+                    <span class="nav-label" th:text="${m.label}">Other Pages</span>
+                    <span th:if="${!#lists.isEmpty(m.children)}" class="fa arrow"></span>
+                </a>
+
+                <div th:if="${!#lists.isEmpty(m.children)}"
+                     th:with="menuList = ${#strings.isEmpty(m.children)? null : m.children}, menuId=${'m' + m.id}, menuLabel=${m.label}"
+                     th:include="fragments/sidebar :: submenu" th:remove="tag">
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div th:unless="${#strings.isEmpty(menuList)}" th:fragment="submenu" th:remove="tag">
+    <ul class="nav nav-second-level" th:attr="id=${menuId}">
+        <li th:each="m : ${menuList}" th:class="${#strings.equals(m.id, menuAktif) ? 'active' : null}">
+            <a th:href="@{${#strings.isEmpty(m.url) ? '#' : m.url}}" th:text="${m.label}">Dashboard
+            </a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
