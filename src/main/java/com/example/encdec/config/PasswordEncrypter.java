@@ -39,17 +39,11 @@ public class PasswordEncrypter implements PasswordEncoder {
     }
 
     public String encrypt(String str) {
-        if (isUsedNewMethod())
-            return encryptByNewMethod(str);
-        else
-            return encryptByOldMethod(str);
+        return encryptByOldMethod(str);
     }
 
     public String decrypt(String str) {
-        if (isUsedNewMethod())
-            return decryptByNewMethod(str);
-        else
-            return decryptByOldMethod(str);
+        return decryptByOldMethod(str);
     }
 
     private Boolean isUsedNewMethod() {
@@ -105,10 +99,7 @@ public class PasswordEncrypter implements PasswordEncoder {
 
     @Override
     public String encode(CharSequence str) {
-        if (isUsedNewMethod())
-            return encryptByNewMethod(str.toString());
-        else
-            return encryptByOldMethod(str.toString());
+        return encryptByOldMethod(str.toString());
     }
 
     @Override
