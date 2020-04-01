@@ -41,11 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                    "where u.username = ?";
 
     private static final String SQL_LOGIN
-            = "select username, password, status as enabled "
-            + "from s_user where username= ?";
+            = "select userid, userpassword, aktif as enabled "
+            + "from tbmuser where userid= ?";
     private static final String SQL_PERMISSION
-            = "select username, 'ROLE_TES' as authority "
-            + "from s_user where username = ?";
+            = "select userid, 'ROLE_TES' as authority "
+            + "from tbmuser where userid = ?";
 
     @Autowired
     private DataSource ds;
